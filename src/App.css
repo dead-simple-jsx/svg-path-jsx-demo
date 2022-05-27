@@ -1,38 +1,163 @@
+body,
+#root,
 .App {
-  text-align: center;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
+body {
+  background: #eee;
+  color: #555556;
+  font-size: 14pt;
+}
+
+.App {
+  padding-bottom: 2rem;
+}
+
+header {
+  text-align: center;
+  border-bottom: 0.25rem solid #e6e6e6;
+}
+header > * {
+  margin: 0;
+  padding: 0;
+}
+
+ul li + li {
+  margin-top: 1rem;
+}
+
+.main-content > *:not(dialog):not(.full-width) {
+  width: 100vw;
+  max-width: 960px;
+  margin-inline: auto;
+  padding: 2rem;
+}
+
+.demo-cards-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+.demo-cards-controls > * {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+}
+.demo-cards-controls[rendermode] > *:not(:first-child) {
+  opacity: 0.5;
   pointer-events: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.demo-cards-controls > * > *:first-child {
+  margin-right: 1ch;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.demo-cards-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 2rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.demo-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+
+  margin: 0;
+  padding: 0;
+  max-width: 250px;
+  justify-items: center;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.demo-card:is(:hover, :focus):not(:active) {
+  transform: scale(1.1);
+}
+.demo-card > .demo-card-summary {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  font-family: monospace;
+  background: #f6f6f6;
+  border-top: 0.125rem solid #eee;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+dialog code {
+  display: block;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #eee;
+}
+code > :not(:first-child):not(:last-child) {
+  padding-left: 2ch;
+}
+.demo-dialog {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 960px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  margin: 0 auto;
+
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.125);
+
+  align-self: center;
+  justify-self: center;
+  z-index: 2;
+}
+dialog:not([open]) {
+  display: none;
+}
+dialog[open] + * {
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+dialog::-webkit-backdrop {
+  content: '';
+  display: block;
+  background: rgba(0, 0, 0, 0.375);
+  -webkit-backdrop-filter: blur(0.25rem);
+  backdrop-filter: blur(0.25rem);
+}
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.375);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+dialog > :last-child {
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+dialog .demo-cards-controls {
+  justify-content: left;
+}
+dialog .canvas {
+  background-color: #eee;
+}
+
+dialog pre {
+  width: 100%;
+  overflow: hidden;
+  margin: 1rem 0 0;
 }
